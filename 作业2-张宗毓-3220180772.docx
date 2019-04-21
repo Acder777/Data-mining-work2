@@ -1,0 +1,23 @@
+#文件传不上来....
+
+数据挖掘大作业二：关联规则挖掘
+张宗毓 3220180772
+1. 数据源
+Youtube视频集
+2. 实验内容
+1.数据集处理，关联规则挖掘数据形式；
+选择“category_id，comments_disabled，ratings_disabled，video_error_or_removed四个属性，每个属性对应一到多个值，每个值为一个项，每个事务以list存储进行分析。
+
+2.频繁项集；
+#频繁1项集
+[frozenset({'video_error_or_removed=False'}),frozenset({'ratings_disabled=False'}), frozenset({'comments_disabled=False'})]
+#频繁2项集
+[frozenset({'comments_disabled=False', 'ratings_disabled=False'}), frozenset({'video_error_or_removed=False','comments_disabled=False'}), frozenset({'video_error_or_removed=False','ratings_disabled=False'})] 
+#频繁3项集
+[frozenset({'video_error_or_removed=False', 'comments_disabled=False', 'ratings_disabled=False'})], []
+
+3.关联规则，支持度(support)和置信度(conf)
+[(frozenset({'ratings_disabled=False'}), frozenset({'comments_disabled=False'}), 0.5782472149798531, 0.9838267638405069), (frozenset({'comments_disabled=False'}), frozenset({'ratings_disabled=False'}), 0.5782472149798531, 0.9868507893252149), (frozenset({'comments_disabled=False'}), frozenset({'video_error_or_removed=False'}), 0.5855575030251619, 0.9993267050595587), (frozenset({'video_error_or_removed=False'}), frozenset({'comments_disabled=False'}), 0.5855575030251619, 0.9779594451707667), (frozenset({'ratings_disabled=False'}), frozenset({'video_error_or_removed=False'}), 0.5873585658861541, 0.9993287682499423), (frozenset({'video_error_or_removed=False'}), frozenset({'ratings_disabled=False'}), 0.5873585658861541, 0.9809674613385281), (frozenset({'ratings_disabled=False'}), frozenset({'video_error_or_removed=False', 'comments_disabled=False'}), 0.5778526964483977, 0.9831555320904493), (frozenset({'comments_disabled=False'}), frozenset({'video_error_or_removed=False', 'ratings_disabled=False'}), 0.5778526964483977, 0.9861774943847735), (frozenset({'video_error_or_removed=False'}), frozenset({'comments_disabled=False', 'ratings_disabled=False'}), 0.5778526964483977, 0.9650913863959539)]
+
+4.使用Lift对规则进行评价
+[[frozenset({'ratings_disabled=False'}), frozenset({'comments_disabled=False'}), 1.6790227316340869], [frozenset({'comments_disabled=False'}), frozenset({'ratings_disabled=False'}), 1.6790227316340869], [frozenset({'comments_disabled=False'}), frozenset({'video_error_or_removed=False'}), 1.6690094226021404], [frozenset({'video_error_or_removed=False'}), frozenset({'comments_disabled=False'}), 1.6690094226021404], [frozenset({'ratings_disabled=False'}), frozenset({'video_error_or_removed=False'}), 1.6690128684063739], [frozenset({'video_error_or_removed=False'}), frozenset({'ratings_disabled=False'}), 1.6690128684063739], [frozenset({'ratings_disabled=False'}), frozenset({'video_error_or_removed=False', 'comments_disabled=False'}), 1.6790076585325597], [frozenset({'comments_disabled=False'}), frozenset({'video_error_or_removed=False', 'ratings_disabled=False'}), 1.6790041920933205], [frozenset({'video_error_or_removed=False'}), frozenset({'comments_disabled=False', 'ratings_disabled=False'}), 1.6689944393931564]]
